@@ -1,5 +1,4 @@
 function ucFirst(str) {
-
   if (str == '') {
     return str;
   }

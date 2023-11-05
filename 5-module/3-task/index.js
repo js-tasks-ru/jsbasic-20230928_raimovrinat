@@ -38,8 +38,11 @@ function initCarousel() {
       }
     }
 
-  });
+  });  
 }
+
+
+
 
 
 

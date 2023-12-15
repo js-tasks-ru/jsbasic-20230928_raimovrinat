@@ -50,17 +50,21 @@ export default class StepSlider {
   addEventListeners() {
     let slider = this.slider;
     let segments = this.steps - 1;
+    let steps = slider.querySelectorAll('.slider__steps span');
+    steps[0].classList.add('slider__step-active');
+    let stepsStack = [];
+    stepsStack.push(steps[0]);
 
 
     slider.addEventListener('click', function(event) {
       let target = event.target;
 
-
       if(target.closest('.slider')) {
-        let steps = slider.querySelectorAll('span');
+
         let thumb = slider.querySelector('.slider__thumb');
         let sliderValue = slider.querySelector('.slider__value');
         let progress = slider.querySelector('.slider__progress');
+
 
         let left = event.clientX - slider.getBoundingClientRect().left;
         let leftRelative = left / slider.offsetWidth;
@@ -68,21 +72,33 @@ export default class StepSlider {
         let value = Math.round(approximateValue);
         let valuePercents = value / segments * 100;
 
-
-        // steps[3].classList.add('slider__step-active');
         thumb.style.left = `${valuePercents}%`;
         progress.style.width = `${valuePercents}%`;
         sliderValue.textContent = value;
 
 
+        let lastItem = stepsStack.pop();
+        lastItem.classList.remove('slider__step-active');
+        stepsStack.push(steps[value])
+
+        steps[value].classList.add('slider__step-active');
 
 
 
+        let addEvent = new CustomEvent('slider-change', {
+          detail: value,
+          bubbles: true
+        });
+
+        slider.dispatchEvent(addEvent);
 
       }
 
     });
+
   }
+
+
 }
 
 

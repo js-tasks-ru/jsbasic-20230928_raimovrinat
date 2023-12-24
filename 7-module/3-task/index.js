@@ -79,8 +79,7 @@ export default class StepSlider {
 
         let lastItem = stepsStack.pop();
         lastItem.classList.remove('slider__step-active');
-        stepsStack.push(steps[value])
-
+        stepsStack.push(steps[value]);
         steps[value].classList.add('slider__step-active');
 
 

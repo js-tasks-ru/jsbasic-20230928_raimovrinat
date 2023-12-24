@@ -1,7 +1,7 @@
 import createElement from '../../assets/lib/create-element.js';
 
 export default class Modal {
-  constructor() {   
+  constructor() {
     this.modal = this.render();
     this.addEventListeners();
   }
@@ -29,24 +29,24 @@ export default class Modal {
       </div>
       </div>
     </div>
-    `);   
+    `);
 
   }
 
-  open() {        
+  open() {
     let modal = this.modal;
     document.body.append(modal);
     document.body.classList.add('is-modal-open');
-    
+
   }
 
   setTitle(title) {
     let modal = this.modal;
-    let modalTitle = modal.querySelector('.modal__title');    
+    let modalTitle = modal.querySelector('.modal__title');
     modalTitle.textContent = title;
   }
 
-  setBody(body) {        
+  setBody(body) {
     let modal = this.modal;
     let modalBody = modal.querySelector('.modal__body');
     modalBody.textContent = body.innerHTML;
@@ -56,10 +56,10 @@ export default class Modal {
     let modal = this.modal;
     document.body.classList.remove('is-modal-open');
     modal.remove()
-    
+
   }
 
-  
+
 
   addEventListeners() {
     let modal = this.modal;
@@ -75,7 +75,7 @@ export default class Modal {
       if(event.target.closest('.modal__close')) {
         document.body.classList.remove('is-modal-open')
         modal.remove()
-      
+
       }
     });
 
